@@ -1,50 +1,323 @@
 [
   {
-    "id": "optimize-db",
-    "question": "Optimize database như thế nào?",
-    "answer": "Sử dụng indexing đúng chỗ, tránh SELECT *, tối ưu JOIN, dùng explain để xem plan, phân tích slow query log.",
-    "category": "Database",
-    "tags": ["optimize", "sql", "performance"]
-  },
-  {
-    "id": "spring-cloud",
-    "question": "Có biết spring cloud không?",
-    "answer": "Spring Cloud hỗ trợ phát triển ứng dụng phân tán bằng cách tích hợp các tool như Eureka, Config Server, Gateway, etc.",
-    "category": "Spring",
-    "tags": ["spring", "cloud"]
-  },
-  {
-    "id": "spring-security",
-    "question": "Implement spring security như thế nào?",
-    "answer": "Dùng SecurityFilterChain với cấu hình bean, thiết lập authentication manager, JWT filter, và phân quyền bằng annotation.",
-    "category": "Spring",
-    "tags": ["security", "jwt", "oauth2"]
-  },
-  {
-    "id": "multi-thread",
-    "question": "Implement multi thread như thế nào?",
-    "answer": "Dùng Runnable, Callable, hoặc sử dụng ExecutorService. Cẩn trọng với thread safety, đồng bộ hóa nếu cần.",
-    "category": "Basic",
-    "tags": ["thread", "concurrency"]
-  },
-  {
-    "id": "oop-desc",
+    "id": "oop-principles",
     "question": "4 đặc trưng cơ bản của OOP là gì?",
-    "answer": "- Abstraction: Ẩn chi tiết, chỉ hiển thị phần quan trọng.\n- Encapsulation: Bao đóng dữ liệu.\n- Inheritance: Tái sử dụng code.\n- Polymorphism: Đa hình hành vi.",
+    "answer": "OOP (Object-Oriented Programming) gồm 4 đặc trưng chính giúp thiết kế hệ thống rõ ràng, linh hoạt, dễ mở rộng và bảo trì:\n\n1. **Abstraction (Trừu tượng hóa)**\n   - Ẩn đi chi tiết triển khai, chỉ cung cấp thông tin cần thiết cho người dùng.\n   - Giúp tập trung vào 'cái gì' thay vì 'như thế nào'.\n   - Triển khai bằng `abstract class` hoặc `interface` trong Java.\n   \n   Ví dụ:\n   ```java\n   abstract class Animal {\n       abstract void makeSound();\n   }\n   class Dog extends Animal {\n       void makeSound() { System.out.println(\"Woof\"); }\n   }\n   ```\n\n2. **Encapsulation (Đóng gói)**\n   - Bao bọc dữ liệu (biến) và hành vi (phương thức) bên trong class.\n   - Giữ cho dữ liệu an toàn, không bị truy cập trái phép.\n   - Thường dùng `private` cho field và `getter/setter` để truy cập.\n\n   Ví dụ:\n   ```java\n   class User {\n       private String name;\n       public String getName() { return name; }\n       public void setName(String name) { this.name = name; }\n   }\n   ```\n\n3. **Inheritance (Kế thừa)**\n   - Cho phép lớp con kế thừa thuộc tính và phương thức từ lớp cha.\n   - Giúp tái sử dụng mã, giảm lặp lại, dễ bảo trì.\n\n   Ví dụ:\n   ```java\n   class Animal {\n       void eat() { System.out.println(\"eating...\"); }\n   }\n   class Dog extends Animal {\n       void bark() { System.out.println(\"barking...\"); }\n   }\n   ```\n\n4. **Polymorphism (Đa hình)**\n   - Cùng một hành động nhưng thực hiện khác nhau tùy đối tượng.\n   - Có 2 loại:\n     - **Compile-time polymorphism**: method overloading\n     - **Runtime polymorphism**: method overriding\n   \n   Ví dụ runtime polymorphism:\n   ```java\n   class Animal {\n       void sound() { System.out.println(\"Animal sound\"); }\n   }\n   class Cat extends Animal {\n       void sound() { System.out.println(\"Meow\"); }\n   }\n   public class Demo {\n       public static void main(String[] args) {\n           Animal a = new Cat();\n           a.sound(); // Meow\n       }\n   }\n   ```\n\nTóm tắt nhanh:\n\n| Đặc trưng       | Mục đích chính                                      | Ví dụ code đơn giản                     |\n|----------------|------------------------------------------------------|-----------------------------------------|\n| Abstraction    | Ẩn chi tiết, chỉ show interface/method cần thiết    | `abstract class Animal {}`             |\n| Encapsulation  | Bảo vệ dữ liệu nội bộ, chỉ truy cập qua method     | `private String name; getName()`       |\n| Inheritance    | Tái sử dụng code bằng kế thừa class cha             | `class Dog extends Animal`             |\n| Polymorphism   | Gọi cùng method nhưng xử lý khác nhau tùy object   | `Animal a = new Dog(); a.sound();`     |\n\nNhờ 4 đặc trưng này, OOP cho phép xây dựng phần mềm phức tạp một cách rõ ràng, có cấu trúc và dễ bảo trì hơn.",
     "category": "OOP",
     "tags": [
       "oop",
+      "abstraction",
       "encapsulation",
       "inheritance",
-      "abstraction",
       "polymorphism"
     ]
   },
   {
-    "id": "nosql-types",
-    "question": "NoSQL đã từng làm chưa, và sử dụng loại NoSQL nào?",
-    "answer": "Từng dùng MongoDB (document) và Redis (key-value). Tuỳ case sẽ chọn loại NoSQL phù hợp.",
+    "id": "polymorphism",
+    "question": "Tính đa hình là gì?",
+    "answer": "Tính đa hình: 'One interface, many implementations'. Cho phép một thực thể (biến, hàm, đối tượng) có nhiều dạng.\n- Compile-time: Method overloading.\n- Runtime: Method overriding qua kế thừa hoặc interface.",
+    "category": "OOP",
+    "tags": ["polymorphism", "oop", "java"]
+  },
+  {
+    "id": "runtime-polymorphism",
+    "question": "Runtime polymorphism là gì?",
+    "answer": "Runtime polymorphism (dynamic method dispatch): Method overriding, khi class con ghi đè phương thức của class cha. Method được gọi xác định tại runtime.\nVí dụ: `Car car = new Audi(); car.run();` gọi phương thức `run` của `Audi`.",
+    "category": "OOP",
+    "tags": ["polymorphism", "runtime", "overriding", "java"]
+  },
+  {
+    "id": "abstraction",
+    "question": "Tính trừu tượng trong Java là gì?",
+    "answer": "Tính trừu tượng: Ẩn chi tiết triển khai, chỉ hiển thị chức năng cần thiết.\nCách thực hiện:\n- Lớp `abstract`.\n- `interface`.",
+    "category": "OOP",
+    "tags": ["abstraction", "oop", "java", "abstract", "interface"]
+  },
+  {
+    "id": "abstract-vs-interface",
+    "question": "Sự khác biệt giữa class abstract và interface?",
+    "answer": "- Abstract class: Không hỗ trợ đa kế thừa, có thể chứa thân phương thức, constructor, biến instance, phạm vi truy cập tùy chỉnh.\n- Interface: Hỗ trợ đa kế thừa, chỉ khai báo phương thức, mặc định public, không có constructor, không chứa biến instance.",
+    "category": "OOP",
+    "tags": ["abstract", "interface", "oop", "java"]
+  },
+  {
+    "id": "inheritance",
+    "question": "Tính kế thừa trong Java là gì?",
+    "answer": "Kế thừa: Lớp con kế thừa thuộc tính, phương thức từ lớp cha, giúp tái sử dụng mã và thiết lập quan hệ.\n- Super class: Lớp cha.\n- Subclass: Lớp con.",
+    "category": "OOP",
+    "tags": ["inheritance", "oop", "java"]
+  },
+  {
+    "id": "inheritance-types",
+    "question": "Các kiểu kế thừa trong Java?",
+    "answer": "- Đơn kế thừa: Một lớp con, một lớp cha.\n- Kế thừa thứ bậc: Nhiều lớp con kế thừa một lớp cha.\n- Kế thừa đa cấp: Lớp con là lớp cha của lớp khác.\n- Kế thừa lai/đa kế thừa: Chỉ hỗ trợ qua interface, không hỗ trợ trực tiếp.",
+    "category": "OOP",
+    "tags": ["inheritance", "oop", "java"]
+  },
+  {
+    "id": "overloading-vs-overriding",
+    "question": "Nạp chồng phương thức và ghi đè phương thức là gì?",
+    "answer": "- Nạp chồng (Overloading): Cùng tên phương thức, khác tham số (số lượng/kiểu), trong cùng class.\n- Ghi đè (Overriding): Lớp con định nghĩa lại phương thức của lớp cha, cùng tên và tham số.",
+    "category": "OOP",
+    "tags": ["overloading", "overriding", "oop", "java"]
+  },
+  {
+    "id": "override-private-static",
+    "question": "Có thể ghi đè phương thức private hoặc static trong Java không?",
+    "answer": "Không thể ghi đè phương thức `private` hoặc `static`. Phương thức `private` không truy cập được từ lớp con. Phương thức `static` nếu định nghĩa lại sẽ ẩn (hide) phương thức lớp cha, không phải ghi đè.",
+    "category": "OOP",
+    "tags": ["overriding", "private", "static", "java", "oop"]
+  },
+  {
+    "id": "multiple-inheritance",
+    "question": "Đa kế thừa là gì? Tại sao không hỗ trợ trong Java?",
+    "answer": "Đa kế thừa: Lớp con kế thừa từ nhiều lớp cha. Java không hỗ trợ để tránh bài toán kim cương (xung đột phương thức cùng tên). Giải pháp: Sử dụng `interface` để đạt đa kế thừa.",
+    "category": "OOP",
+    "tags": [
+      "inheritance",
+      "multiple inheritance",
+      "diamond problem",
+      "java",
+      "oop"
+    ]
+  },
+  {
+    "id": "encapsulation",
+    "question": "Tính đóng gói trong Java là gì?",
+    "answer": "Đóng gói: Liên kết dữ liệu và phương thức thành đơn vị, ẩn dữ liệu (biến `private`), truy cập qua getter/setter. Bảo vệ dữ liệu khỏi sửa đổi không mong muốn.",
+    "category": "OOP",
+    "tags": ["encapsulation", "oop", "java"]
+  },
+  {
+    "id": "association",
+    "question": "Association là gì?",
+    "answer": "Association: Mối quan hệ giữa các đối tượng có vòng đời riêng, không có sở hữu. Ví dụ: Giảng viên và học viên, cả hai độc lập.",
+    "category": "OOP",
+    "tags": ["association", "oop", "java"]
+  },
+  {
+    "id": "aggregation",
+    "question": "Aggregation là gì?",
+    "answer": "Aggregation: Mối quan hệ có sở hữu, nhưng đối tượng con tồn tại độc lập. Ví dụ: Khoa và giảng viên, giảng viên thuộc khoa nhưng khoa vẫn tồn tại nếu không có giảng viên.",
+    "category": "OOP",
+    "tags": ["aggregation", "oop", "java"]
+  },
+  {
+    "id": "composition",
+    "question": "Composition là gì?",
+    "answer": "Composition: Dạng đặc biệt của aggregation, đối tượng con phụ thuộc vào cha. Nếu cha bị xóa, con cũng bị xóa. Ví dụ: Nhà và phòng, xóa nhà thì phòng cũng mất.",
+    "category": "OOP",
+    "tags": ["composition", "oop", "java"]
+  },
+  {
+    "id": "dependency",
+    "question": "Dependency là gì?",
+    "answer": "Dependency: Đối tượng A phụ thuộc vào B, thay đổi ở B ảnh hưởng A. Ví dụ: Thay đổi kiểu dữ liệu id khách hàng ảnh hưởng đơn hàng.",
+    "category": "OOP",
+    "tags": ["dependency", "oop", "java"]
+  },
+  {
+    "id": "marker-interface",
+    "question": "Interface Marker trong Java là gì?",
+    "answer": "Marker Interface: Interface rỗng, không có phương thức/thuộc tính, cung cấp thông tin runtime cho compiler/JVM. Ví dụ: `Serializable`, `Cloneable`.",
+    "category": "OOP",
+    "tags": ["marker interface", "serializable", "cloneable", "java", "oop"]
+  },
+  {
+    "id": "cloning-object",
+    "question": "Cloning object trong Java là gì?",
+    "answer": "Cloning: Tạo bản sao đối tượng với trạng thái tương tự. Sử dụng phương thức `clone()` của interface `Cloneable` để sao chép hiệu quả, tránh dùng `new`.",
+    "category": "OOP",
+    "tags": ["cloning", "cloneable", "java", "oop"]
+  },
+  {
+    "id": "copy-constructor",
+    "question": "Copy Constructor trong Java là gì?",
+    "answer": "Copy Constructor: Constructor khởi tạo đối tượng bằng cách sao chép dữ liệu từ đối tượng cùng kiểu. Ví dụ: `Person(Person p)` sao chép `name`, `age`.",
+    "category": "OOP",
+    "tags": ["copy constructor", "java", "oop"]
+  },
+  {
+    "id": "constructor-overloading",
+    "question": "Constructor Overloading trong Java là gì?",
+    "answer": "Constructor Overloading: Nhiều constructor trong cùng class, khác tham số (số lượng/kiểu). Trình biên dịch phân biệt dựa trên danh sách tham số.",
+    "category": "OOP",
+    "tags": ["constructor", "overloading", "java", "oop"]
+  },
+
+  {
+    "id": "spring-cloud",
+    "question": "Có biết Spring Cloud không?",
+    "answer": "Spring Cloud là tập hợp công cụ hỗ trợ phát triển ứng dụng phân tán (microservices).\n\n| Thành phần | Chức năng | Ứng dụng |\n|------------|-----------|----------|\n| Eureka | Service registry/discovery | Đăng ký và tìm kiếm dịch vụ |\n| Config Server | Quản lý cấu hình tập trung | Lưu config trong Git |\n| Spring Cloud Gateway | API Gateway | Định tuyến, lọc request |\n| Sleuth/Zipkin | Distributed tracing | Theo dõi request qua các dịch vụ |\n| Load Balancer | Cân bằng tải | Phân phối request giữa các instance |\n\nVí dụ: Dùng Eureka để đăng ký microservice `user-service` và `order-service`.",
+    "category": "Spring",
+    "tags": ["spring", "cloud", "microservices", "eureka", "gateway"]
+  },
+  {
+    "id": "spring-security",
+    "question": "Implement Spring Security như thế nào?",
+    "answer": "Khi làm API backend, tôi thường implement Spring Security theo các bước sau để đảm bảo an toàn và rõ ràng:\n\n1. **Khai báo quyền truy cập cho từng endpoint**\n```java\nhttp.authorizeHttpRequests(auth ->\n    auth.requestMatchers(\"/auth/**\").permitAll() // các API public như login, register\n        .anyRequest().authenticated()            // các API còn lại bắt buộc phải login\n);\n```\n→ Giúp bảo vệ API theo đúng vai trò, tránh để hở dữ liệu.\n\n2. **Tắt CSRF nếu dùng JWT (stateless)**\n```java\nhttp.csrf(csrf -> csrf.disable());\n```\n→ Vì không dùng session nên không cần CSRF token.\n\n3. **Thêm JWT Filter để kiểm tra token ở mỗi request**\n```java\nhttp.addFilterBefore(jwtFilter, UsernamePasswordAuthenticationFilter.class);\n```\n→ Filter này sẽ đọc token từ header, decode ra user, set lại vào context.\n\n4. **Mã hóa mật khẩu bằng BCrypt**\n```java\n@Bean\npublic PasswordEncoder passwordEncoder() {\n    return new BCryptPasswordEncoder();\n}\n```\n→ Tránh lưu plain text, giúp tăng bảo mật nếu bị lộ DB.\n\n5. **Xác thực người dùng (AuthenticationManager)**\n```java\n@Bean\npublic AuthenticationManager authenticationManager(AuthenticationConfiguration config) throws Exception {\n    return config.getAuthenticationManager();\n}\n```\n→ Dùng để xác thực khi login và sinh JWT.\n\n6. **Phân quyền trong Controller bằng annotation**\n```java\n@PreAuthorize(\"hasRole('ADMIN')\")\n```\n→ Giúp kiểm tra role trước khi xử lý logic bên trong controller.\n\n7. **Tùy chọn: cấu hình login UI** (nếu dùng giao diện form login)\n```java\nhttp.formLogin(form -> form.loginPage(\"/login\"));\n```\n→ Chỉ cần khi bạn build giao diện HTML login.\n\n🔑 **Tổng kết**:\n- Với REST API, tôi tắt CSRF và session, dùng JWT để xác thực\n- Áp dụng filter để validate token ở mỗi request\n- Mỗi controller được phân quyền rõ ràng bằng annotation\n- Mật khẩu mã hóa bằng BCrypt là bắt buộc trong mọi hệ thống thực tế\n\nCấu hình này giúp backend hoạt động stateless, dễ scale, dễ debug và kiểm soát được mọi điểm truy cập.",
+    "category": "Spring",
+    "tags": ["spring", "security", "jwt", "authentication", "authorization"]
+  },
+  {
+    "id": "microservice-overview",
+    "question": "Microservice là gì? Ưu nhược điểm?",
+    "answer": "Microservice là cách chia hệ thống lớn thành các service nhỏ, mỗi service đảm nhiệm một chức năng riêng, deploy độc lập, giao tiếp qua HTTP/REST hoặc message queue.\n\n✅ **Ưu điểm**:\n- Dễ scale từng service riêng biệt (VD: user-service scale 3 instance, order-service scale 10)\n- Triển khai độc lập, rollback nhanh\n- Codebase nhỏ, dễ maintain, mỗi team có thể phụ trách 1 service riêng\n\n❌ **Nhược điểm**:\n- Phức tạp về mặt deploy, monitoring, tracing\n- Quản lý version API, cấu hình, và lỗi giữa service\n- Khó debug hơn so với monolith\n\n➡️ Nên dùng khi hệ thống đủ lớn và cần chia theo domain rõ ràng.",
+    "category": "Basic",
+    "tags": ["microservice", "architecture", "monolith"]
+  },
+  {
+    "id": "microservice-communication",
+    "question": "Các cách giao tiếp giữa các microservice là gì?",
+    "answer": "Microservice có thể giao tiếp với nhau qua 2 hình thức:\n\n1. **Synchronous (đồng bộ)**: gọi HTTP REST trực tiếp qua URL hoặc gateway\n```java\nRestTemplate / WebClient\n```\n→ Nhanh, dễ dùng, nhưng bị phụ thuộc network\n\n2. **Asynchronous (bất đồng bộ)**: dùng message broker như Kafka, RabbitMQ\n```java\norderService.publish(event);\nshippingService.subscribe(event);\n```\n→ Hạn chế call chéo, xử lý chậm hơn nhưng dễ scale\n\nTùy trường hợp mà chọn: xử lý real-time thì dùng HTTP, còn event-driven thì dùng message queue.",
+    "category": "Basic",
+    "tags": ["communication", "rest", "kafka", "async"]
+  },
+  {
+    "id": "microservice-discovery",
+    "question": "Service discovery là gì? Spring dùng gì?",
+    "answer": "Trong microservice, các service cần biết địa chỉ nhau khi deploy nhiều instance hoặc dynamic IP.\n\n➡️ Spring dùng **Eureka Server** để làm service registry.\n\n**Cách dùng:**\n- Service A đăng ký với Eureka\n- Service B gọi A qua tên (không cần hardcode IP)\n\n```yaml\nspring.application.name=user-service\n```\n```java\n@GetMapping(\"/users\")\npublic List<User> getUsers() {\n    return restTemplate.getForObject(\"http://user-service/users\", List.class);\n}\n```\n→ Eureka sẽ resolve user-service thành IP cụ thể.",
+    "category": "Basic",
+    "tags": ["discovery", "eureka", "service-registry"]
+  },
+  {
+    "id": "microservice-gateway",
+    "question": "API Gateway dùng để làm gì?",
+    "answer": "API Gateway là điểm truy cập duy nhất cho client khi gọi vào microservice.\n\nNó giúp:\n- Chuyển tiếp request đến đúng service\n- Bảo mật (JWT filter)\n- Logging, rate limiting\n\nSpring có **Spring Cloud Gateway**:\n```yaml\nroutes:\n  - id: user-service\n    uri: lb://user-service\n    predicates:\n      - Path=/api/users/**\n```\n→ Khi gọi `/api/users`, gateway sẽ tự redirect đến `user-service`.",
+    "category": "Basic",
+    "tags": ["gateway", "routing", "spring-cloud-gateway"]
+  },
+  {
+    "id": "multi-thread",
+    "question": "Implement multi-thread như thế nào?",
+    "answer": "Multi-threading trong Java xử lý nhiều luồng đồng thời.\n\n| Cách tiếp cận | Mô tả | Ví dụ |\n|---------------|-------|-------|\n| Runnable | Tạo thread đơn giản | `new Thread(new MyRunnable()).start();` |\n| Callable/Future | Trả về kết quả | `Future<String> result = executor.submit(new MyCallable());` |\n| ExecutorService | Quản lý thread pool | `ExecutorService executor = Executors.newFixedThreadPool(4);` |\n| ForkJoinPool | Xử lý task song song | `ForkJoinPool.commonPool().invoke(task);` |\n| CompletableFuture | Xử lý bất đồng bộ | `CompletableFuture.supplyAsync(() -> \"Result\");` |\n\nLưu ý: Đảm bảo thread-safe, tránh race condition bằng `synchronized` hoặc `Lock`.",
+    "category": "Basic",
+    "tags": ["thread", "concurrency", "java", "multithreading"]
+  },
+  {
+    "id": "db-sql-vs-nosql",
+    "question": "So sánh SQL và NoSQL?",
+    "answer": "🧱 **SQL (MySQL, PostgreSQL)**\n- Có schema rõ ràng, quan hệ giữa bảng\n- Hỗ trợ JOIN, transaction mạnh\n- Tốt cho hệ thống cần đảm bảo tính nhất quán (banking, inventory)\n\n📦 **NoSQL (MongoDB, DynamoDB)**\n- Không có schema cố định\n- Dữ liệu dạng document (JSON), scale tốt\n- Tốt cho dữ liệu linh hoạt, scale nhanh, tốc độ cao (log, user action, caching)\n\n✅ Nếu cần transactional và quan hệ phức tạp → dùng SQL\n✅ Nếu cần scale mạnh và cấu trúc thay đổi linh hoạt → dùng NoSQL",
     "category": "Database",
-    "tags": ["nosql", "mongodb", "dynamodb"]
+    "tags": ["sql", "nosql", "comparison", "mongodb"]
+  },
+  {
+    "id": "db-optimize-query",
+    "question": "Optimize database như thế nào?",
+    "answer": "Một số cách tôi hay áp dụng khi tối ưu DB:\n\n✅ **Tạo index đúng chỗ** (đặc biệt là các field trong WHERE, JOIN, ORDER BY)\n```sql\nCREATE INDEX idx_user_email ON users(email);\n```\n✅ **Chỉ select field cần thiết**, tránh dùng `SELECT *`\n✅ **Dùng LIMIT/PAGE để tránh load all**\n✅ **Viết truy vấn tránh N+1 query** (sử dụng JOIN hoặc fetch batch)\n✅ **Xem kế hoạch thực thi (EXPLAIN)** để biết truy vấn chạy như nào\n\nTrong Java, nếu dùng JPA/Hibernate thì bật log SQL để debug performance.",
+    "category": "Database",
+    "tags": ["sql", "performance", "index", "query"]
+  },
+  {
+    "id": "db-transaction-acid",
+    "question": "Transaction là gì? ACID là gì?",
+    "answer": "Transaction là tập hợp các thao tác DB chạy như 1 khối, hoặc thành công tất cả hoặc rollback hết.\n\n✅ Ví dụ: chuyển tiền — phải trừ tài khoản A và cộng cho B trong cùng transaction.\n\n**ACID gồm:**\n- **Atomicity**: Tất cả hoặc không có gì\n- **Consistency**: Trạng thái DB luôn hợp lệ trước/sau\n- **Isolation**: Transaction độc lập nhau\n- **Durability**: Khi commit thì dữ liệu sẽ được lưu vĩnh viễn\n\nTrong Spring:\n```java\n@Transactional\npublic void transfer() { ... }\n```",
+    "category": "Database",
+    "tags": ["transaction", "acid", "sql"]
+  },
+  {
+    "id": "db-orm-jpa",
+    "question": "ORM là gì? Ưu nhược điểm của JPA?",
+    "answer": "ORM (Object-Relational Mapping) là cách ánh xạ object Java sang bảng SQL.\n\nTrong Spring, JPA/Hibernate là ORM phổ biến nhất.\n\n✅ Ưu điểm:\n- Code Java đơn giản, không phải viết nhiều SQL\n- Tự mapping object → table → ngắn gọn\n- Dễ dùng với transaction, cascade\n\n❌ Nhược điểm:\n- Có thể phát sinh **N+1 Query** nếu không cẩn thận\n- Khó debug query khi phức tạp\n- Ít linh hoạt khi cần tối ưu sâu SQL\n\n➡️ Nên dùng khi cấu trúc rõ ràng, cần code maintain tốt.",
+    "category": "Database",
+    "tags": ["jpa", "hibernate", "orm", "spring"]
+  },
+  {
+    "id": "db-join-types",
+    "question": "Kể tên và phân biệt các loại JOIN trong SQL?",
+    "answer": "**INNER JOIN** – chỉ lấy dữ liệu khớp ở cả 2 bảng\n**LEFT JOIN** – lấy toàn bộ bên trái + phần khớp bên phải\n**RIGHT JOIN** – ngược lại với LEFT JOIN\n**FULL OUTER JOIN** – lấy cả 2 bên, có thể null 1 phía\n\nVí dụ:\n```sql\nSELECT *\nFROM orders o\nLEFT JOIN users u ON o.user_id = u.id\n```\n→ Dù user bị null thì order vẫn xuất hiện.",
+    "category": "Database",
+    "tags": ["sql", "join", "inner", "left"]
+  },
+  {
+    "id": "db-nosql-mongodb",
+    "question": "Bạn đã dùng MongoDB như thế nào trong project?",
+    "answer": "Tôi dùng MongoDB khi cần lưu dữ liệu dạng linh hoạt, không có schema cố định.\n\n📦 Ví dụ:\n- Lưu thông tin log, request history\n- Lưu user settings theo từng module (mỗi user có cấu trúc khác nhau)\n\nCách dùng:\n```java\n@Document(collection = \"logs\")\npublic class Log {\n    @Id\n    private String id;\n    private String message;\n    private Map<String, Object> data;\n}\n```\n✅ Ưu điểm:\n- Dễ scale ngang, insert/update nhanh\n- Không cần định nghĩa schema cứng như SQL\n\n❌ Lưu ý:\n- Không hỗ trợ transaction mạnh như SQL\n- Không dùng tốt cho dữ liệu quan hệ chặt chẽ\n\nTôi dùng Mongo kết hợp với Spring Data MongoDB để thao tác dễ dàng.",
+    "category": "Database",
+    "tags": ["nosql", "mongodb", "spring-data"]
+  },
+  {
+    "id": "db-nosql-redis-job",
+    "question": "Bạn đã dùng Redis như thế nào trong dự án?",
+    "answer": "Redis tôi dùng như một job queue để xử lý các API cần delay hoặc async.\n\nVí dụ:\n- API nhận request → push job vào Redis\n- Worker lắng nghe và xử lý sau\n\nMô hình giống như:\n```text\nClient → API → push job → Redis list → Worker → xử lý\n```\n\nCode mẫu:\n```java\nredisTemplate.opsForList().rightPush(\"job:email\", jobData);\n```\nWorker xử lý:\n```java\nString job = redisTemplate.opsForList().leftPop(\"job:email\");\n```\n✅ Ưu điểm:\n- Xử lý nhanh, không block request chính\n- Đơn giản hơn Kafka khi chỉ cần queue nhẹ\n\n❗ Lưu ý:\n- Redis không đảm bảo durability như Kafka\n- Nếu worker chết có thể mất job nếu chưa xử lý\n→ Có thể dùng Redisson DelayQueue nếu muốn delay + retry\n\nTôi dùng Redis cho các tác vụ như gửi email, gọi API webhook, update báo cáo nền.",
+    "category": "Database",
+    "tags": ["redis", "nosql", "queue", "job", "delay"]
+  },
+  {
+    "id": "basic-git-flow",
+    "question": "Git flow là gì?",
+    "answer": "Git Flow là cách tổ chức nhánh (branch) trong Git để quản lý source code theo chu kỳ phát triển phần mềm.\n\n🔁 **Các nhánh chính**:\n- `main`: chứa code production, luôn ổn định\n- `develop`: code đang phát triển, chưa release\n- `feature/*`: code từng tính năng nhỏ\n- `release/*`: chuẩn bị release, chỉ fix bug nhẹ\n- `hotfix/*`: sửa gấp lỗi production\n\n➡️ Quy trình:\n1. Tạo nhánh `feature/x` từ `develop`\n2. Sau khi xong → merge vào `develop`\n3. Khi chuẩn bị release → tạo `release/x` từ `develop`\n4. Fix xong thì merge vào `main` và `develop`\n5. Nếu có lỗi gấp → tạo `hotfix/x` từ `main`",
+    "category": "Basic",
+    "tags": ["git", "flow", "branching"]
+  },
+  {
+    "id": "basic-merge-vs-rebase",
+    "question": "Merge và Rebase khác nhau thế nào?",
+    "answer": "Cả hai đều dùng để cập nhật branch với thay đổi mới, nhưng cách hoạt động khác nhau:\n\n🔀 **Merge**: tạo commit mới để kết hợp 2 nhánh\n```bash\ngit checkout feature\ngit merge develop\n```\n→ Lịch sử sẽ có commit merge (dễ tracking nhưng hơi rối)\n\n🧼 **Rebase**: chuyển các commit của nhánh hiện tại lên trên nhánh mới\n```bash\ngit checkout feature\ngit rebase develop\n```\n→ Lịch sử gọn hơn, nhìn như 1 dòng\n\n✅ Merge dùng cho public branch (main, develop)\n✅ Rebase dùng cho nhánh cá nhân (feature) trước khi merge vào develop",
+    "category": "Basic",
+    "tags": ["git", "rebase", "merge", "workflow"]
+  },
+  {
+    "id": "basic-git-reset-types",
+    "question": "Git reset có những loại nào?",
+    "answer": "`git reset` có 3 chế độ, tùy vào mức độ rollback:\n\n1. `--soft`: chỉ thay đổi HEAD\n```bash\ngit reset --soft HEAD~1\n```\n→ Lùi 1 commit, nhưng code vẫn giữ nguyên trong stage\n\n2. `--mixed` (mặc định): HEAD và index\n```bash\ngit reset --mixed HEAD~1\n```\n→ Xóa khỏi commit, nhưng code còn trong working directory\n\n3. `--hard`: xóa luôn cả code\n```bash\ngit reset --hard HEAD~1\n```\n→ Rollback commit và mất luôn file code đã thay đổi\n\n⚠️ Dùng `--hard` cẩn thận vì không thể khôi phục nếu chưa backup.",
+    "category": "Basic",
+    "tags": ["git", "reset", "soft", "hard"]
+  },
+  {
+    "id": "java-equals-vs-equal-operator",
+    "question": "Khác nhau giữa '==' và '.equals()' trong Java là gì?",
+    "answer": "`==` so sánh địa chỉ bộ nhớ (object reference), còn `.equals()` so sánh nội dung bên trong.\n\n📌 Ví dụ:\n```java\nString a = new String(\"Hello\");\nString b = new String(\"Hello\");\nSystem.out.println(a == b);      // false\nSystem.out.println(a.equals(b)); // true\n```\n✅ Với object, nên dùng `.equals()` để so sánh giá trị.",
+    "category": "Basic",
+    "tags": ["java", "equals", "reference", "compare"]
+  },
+  {
+    "id": "java-final-finally-finalize",
+    "question": "Phân biệt final, finally, và finalize trong Java?",
+    "answer": "**final** – dùng cho biến, class, method:\n- `final int x = 5;` → không thay đổi giá trị\n- `final class A {}` → không cho kế thừa\n\n**finally** – khối luôn chạy sau try/catch\n```java\ntry { ... } catch {... } finally { cleanup(); }\n```\n\n**finalize()** – method được gọi trước khi GC thu hồi object (hiếm dùng, deprecated từ Java 9).",
+    "category": "Basic",
+    "tags": ["java", "final", "finally", "finalize"]
+  },
+  {
+    "id": "java-pass-reference",
+    "question": "Java có truyền tham chiếu (pass by reference) không?",
+    "answer": "Java **luôn truyền tham trị (pass-by-value)**.\n\n📌 Nhưng với object, giá trị được truyền là reference → có thể hiểu là \"truyền bản sao địa chỉ\".\n\nVí dụ:\n```java\nvoid update(User u) {\n  u.name = \"New\";      // OK\n  u = new User();       // Không thay đổi object ngoài hàm\n}\n```\n✅ Có thể thay đổi **nội dung object**, nhưng không thể gán object mới từ trong method.",
+    "category": "Basic",
+    "tags": ["java", "reference", "pass-by-value"]
+  },
+  {
+    "id": "java-interface-vs-abstract",
+    "question": "Sự khác nhau giữa Interface và Abstract class trong Java?",
+    "answer": "| Điểm khác | Interface | Abstract class |\n|-----------|-----------|----------------|\n| Kế thừa   | Multiple  | Single only    |\n| Method body | Không có (trước Java 8) | Có thể có |\n| Constructor | ❌        | ✅              |\n| Field      | public static final only | có field thường |\n\n➡️ **Interface**: dùng để define hành vi chung\n➡️ **Abstract**: dùng khi muốn chia sẻ logic mặc định giữa các class",
+    "category": "Basic",
+    "tags": ["interface", "abstract", "inheritance"]
+  },
+  {
+    "id": "java-exception-vs-error",
+    "question": "Exception và Error khác nhau thế nào?",
+    "answer": "- **Exception**: lỗi có thể xử lý được (IO, NullPointer, SQLException...)\n- **Error**: lỗi nghiêm trọng, không nên bắt (OutOfMemoryError, StackOverflowError...)\n\n```java\ntry {\n  // exception có thể xử lý\n} catch (Exception e) { ... }\n```\n✅ Exception có thể bắt và xử lý. Error thì thường để app crash luôn.",
+    "category": "Basic",
+    "tags": ["exception", "error", "java"]
+  },
+  {
+    "id": "java-string-vs-builder-buffer",
+    "question": "Khác nhau giữa String, StringBuilder và StringBuffer?",
+    "answer": "| Loại        | Đặc điểm                          | Thread-safe | Tốc độ     |\n|-------------|----------------------------------|-------------|------------|\n| String      | Bất biến (immutable)             | ✅          | Chậm nhất  |\n| StringBuilder | Có thể thay đổi nội dung (mutable) | ❌          | Nhanh nhất |\n| StringBuffer | Mutable + đồng bộ                | ✅          | Trung bình |\n\n📌 Ví dụ:\n```java\nStringBuilder sb = new StringBuilder(\"Hi\");\nsb.append(\" there\"); // Kết quả: \"Hi there\"\n```\n✅ Dùng `StringBuilder` trong app đơn luồng\n✅ Dùng `StringBuffer` nếu cần thread-safe (multi-thread)",
+    "category": "Basic",
+    "tags": ["string", "stringbuilder", "stringbuffer", "java"]
+  },
+  {
+    "id": "java-hashmap-vs-treemap",
+    "question": "Khác nhau giữa HashMap và TreeMap?",
+    "answer": "| Loại     | Đặc điểm                     | Sắp xếp key? | Null key | Tốc độ |\n|----------|-------------------------------|--------------|----------|--------|\n| HashMap | Không sắp xếp, key/value bất kỳ | ❌ Không      | ✅       | Nhanh  |\n| TreeMap | Sắp xếp key theo thứ tự tăng    | ✅ (Comparable/Comparator) | ❌ | Chậm hơn |\n\n📌 Ví dụ:\n```java\nMap<String, Integer> map = new TreeMap<>();\nmap.put(\"b\", 2);\nmap.put(\"a\", 1); // => {\"a\"=1, \"b\"=2}\n```\n✅ HashMap dùng cho lookup nhanh\n✅ TreeMap dùng khi cần thứ tự theo key",
+    "category": "Basic",
+    "tags": ["hashmap", "treemap", "java", "collections"]
+  },
+  {
+    "id": "java-array-vs-arraylist",
+    "question": "Khác nhau giữa Array và ArrayList?",
+    "answer": "| Đặc điểm        | Array               | ArrayList             |\n|------------------|---------------------|------------------------|\n| Kích thước       | Cố định             | Tự động co giãn        |\n| Kiểu dữ liệu     | Primitive + Object  | Chỉ dùng Object        |\n| Method hỗ trợ    | Ít (length)         | Nhiều (add, remove...) |\n| Performance      | Nhanh hơn           | Linh hoạt hơn          |\n\n📌 Ví dụ:\n```java\nint[] arr = new int[3];\nArrayList<Integer> list = new ArrayList<>();\nlist.add(10);\n```\n✅ Dùng `Array` khi performance & fixed-size\n✅ Dùng `ArrayList` khi cần thao tác linh hoạt, thêm/xóa",
+    "category": "Basic",
+    "tags": ["array", "arraylist", "java", "collections"]
   }
 ]
