@@ -1,0 +1,50 @@
+[
+  {
+    "id": "optimize-db",
+    "question": "Optimize database như thế nào?",
+    "answer": "Sử dụng indexing đúng chỗ, tránh SELECT *, tối ưu JOIN, dùng explain để xem plan, phân tích slow query log.",
+    "category": "Database",
+    "tags": ["optimize", "sql", "performance"]
+  },
+  {
+    "id": "spring-cloud",
+    "question": "Có biết spring cloud không?",
+    "answer": "Spring Cloud hỗ trợ phát triển ứng dụng phân tán bằng cách tích hợp các tool như Eureka, Config Server, Gateway, etc.",
+    "category": "Spring",
+    "tags": ["spring", "cloud"]
+  },
+  {
+    "id": "spring-security",
+    "question": "Implement spring security như thế nào?",
+    "answer": "Dùng SecurityFilterChain với cấu hình bean, thiết lập authentication manager, JWT filter, và phân quyền bằng annotation.",
+    "category": "Spring",
+    "tags": ["security", "jwt", "oauth2"]
+  },
+  {
+    "id": "multi-thread",
+    "question": "Implement multi thread như thế nào?",
+    "answer": "Dùng Runnable, Callable, hoặc sử dụng ExecutorService. Cẩn trọng với thread safety, đồng bộ hóa nếu cần.",
+    "category": "Basic",
+    "tags": ["thread", "concurrency"]
+  },
+  {
+    "id": "oop-desc",
+    "question": "4 đặc trưng cơ bản của OOP là gì?",
+    "answer": "- Abstraction: Ẩn chi tiết, chỉ hiển thị phần quan trọng.\n- Encapsulation: Bao đóng dữ liệu.\n- Inheritance: Tái sử dụng code.\n- Polymorphism: Đa hình hành vi.",
+    "category": "OOP",
+    "tags": [
+      "oop",
+      "encapsulation",
+      "inheritance",
+      "abstraction",
+      "polymorphism"
+    ]
+  },
+  {
+    "id": "nosql-types",
+    "question": "NoSQL đã từng làm chưa, và sử dụng loại NoSQL nào?",
+    "answer": "Từng dùng MongoDB (document) và Redis (key-value). Tuỳ case sẽ chọn loại NoSQL phù hợp.",
+    "category": "Database",
+    "tags": ["nosql", "mongodb", "dynamodb"]
+  }
+]
